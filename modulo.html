@@ -1,289 +1,541 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rokib - 262505003 - Kalkulator Modular Game</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<title>Rokib - 262505003 - MODULAR CALCULATOR</title>
 
-        body {
-            margin: 0;
-            padding: 30px 15px;
-            min-height: 100vh;
-            background: #55b9e8;
-            font-family: monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<style>
 
-        /* Awan */
-        .cloud {
-            position: fixed;
-            font-size: 65px;
-            color: white;
-            z-index: -1;
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .cloud1 { top: 15%; left: 8%; }
-        .cloud2 { top: 10%; right: 10%; }
-        .cloud3 { bottom: 10%; left: 17%; }
-        .cloud4 { bottom: 20%; right: 10%; }
+body {
+    min-height: 100vh;
+    background:
+    radial-gradient(circle at top, #182c55, #070b19 65%);
+    font-family: 'Courier New', monospace;
+    color: #00f7ff;
 
-        /* Kotak utama */
-        .container {
-            width: 590px;
-            max-width: 100%;
-            background: #fff3d6;
-            border: 6px solid #55300c;
-            box-shadow: 12px 12px 0 #333;
-            padding: 26px;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
 
-        /* Header */
-        .header {
-            background: #ed382f;
-            border: 4px solid #75300c;
-            color: white;
-            text-align: center;
-            padding: 25px 10px;
-            margin-bottom: 30px;
-        }
+    overflow-x: hidden;
+}
 
-        .header h1 {
-            margin: 0;
-            font-size: 25px;
-        }
+/* Background stars */
 
-        .header p {
-            font-weight: bold;
-            margin-bottom: 0;
-        }
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
 
-        /* Icon */
-        .icons {
-            display: flex;
-            justify-content: space-around;
-            font-size: 30px;
-            margin-bottom: 25px;
-        }
+    background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(#00f7ff 1px, transparent 1px);
 
-        /* Input */
-        label {
-            display: block;
-            font-size: 17px;
-            font-weight: bold;
-            color: #654321;
-            margin-bottom: 10px;
-        }
+    background-size: 80px 80px, 130px 130px;
+    background-position: 0 0, 40px 50px;
 
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 4px solid #654321;
-            background: white;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            outline: none;
-        }
+    opacity: 0.35;
+    z-index: -1;
+}
 
-        input:focus {
-            border-color: #e63b32;
-        }
+/* Main container */
 
-        /* Tombol */
-        button {
-            width: 100%;
-            padding: 17px;
-            border: 4px solid #654321;
-            font-family: monospace;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 12px;
-            transition: 0.2s;
-        }
+.container {
+    width: 570px;
+    max-width: 100%;
 
-        button:hover {
-            transform: translateY(-3px);
-        }
+    background: rgba(8, 18, 40, 0.95);
 
-        .btn-hitung {
-            background: #32b34a;
-            color: white;
-        }
+    border: 2px solid #00eaff;
 
-        .btn-reset {
-            background: #ffcc35;
-            color: #654321;
-        }
+    padding: 25px;
 
-        /* Hasil */
-        .hasil {
-            background: #d8f5ce;
-            border: 3px dashed #4b9853;
-            margin-top: 15px;
-            padding: 25px 10px;
-            text-align: center;
-            min-height: 220px;
-        }
+    box-shadow:
+    0 0 15px #00eaff,
+    0 0 40px rgba(0, 234, 255, 0.3),
+    inset 0 0 20px rgba(0, 234, 255, 0.1);
+}
 
-        .hasil h3 {
-            color: #28733b;
-        }
+/* Header */
 
-        .rumus {
-            font-size: 17px;
-            font-weight: bold;
-            margin-top: 25px;
-        }
+.header {
+    text-align: center;
 
-        .angka {
-            color: #e53935;
-            font-size: 40px;
-            font-weight: bold;
-            margin: 15px 0;
-        }
+    padding: 25px 10px;
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            color: #654321;
-            font-weight: bold;
-            margin-top: 30px;
-            line-height: 1.8;
-        }
+    background: linear-gradient(
+        135deg,
+        #101e42,
+        #152d65
+    );
 
-        @media(max-width: 480px) {
-            .container {
-                padding: 18px;
-            }
+    border: 2px solid #00eaff;
 
-            .header h1 {
-                font-size: 21px;
-            }
-        }
-    </style>
+    box-shadow: 0 0 15px #00eaff;
+
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 27px;
+    letter-spacing: 4px;
+
+    color: #00f7ff;
+
+    text-shadow: 0 0 15px #00f7ff;
+}
+
+.header p {
+    color: #b58cff;
+
+    font-size: 12px;
+    margin-top: 10px;
+
+    letter-spacing: 3px;
+}
+
+/* Status */
+
+.status {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 11px;
+
+    color: #00ff9d;
+
+    margin-bottom: 25px;
+}
+
+.online {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Icons */
+
+.icons {
+    display: flex;
+    justify-content: space-around;
+
+    font-size: 27px;
+
+    margin-bottom: 30px;
+
+    filter: drop-shadow(0 0 8px #00eaff);
+}
+
+/* Input */
+
+label {
+    display: block;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+    color: #b58cff;
+}
+
+input {
+    width: 100%;
+
+    padding: 15px;
+
+    background: #050d20;
+
+    border: 1px solid #00eaff;
+
+    color: #00ffea;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    outline: none;
+
+    margin-bottom: 25px;
+
+    box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.15);
+}
+
+input:focus {
+    box-shadow: 0 0 15px #00eaff;
+}
+
+/* Buttons */
+
+button {
+    width: 100%;
+
+    padding: 16px;
+
+    margin-bottom: 15px;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-hitung {
+    background: #00eaff;
+
+    color: #061020;
+
+    border: 1px solid #00eaff;
+
+    box-shadow: 0 0 15px #00eaff;
+}
+
+.btn-hitung:hover {
+    background: #ffffff;
+
+    box-shadow: 0 0 30px #00eaff;
+
+    transform: scale(1.02);
+}
+
+.btn-reset {
+    background: transparent;
+
+    color: #ff4dff;
+
+    border: 1px solid #ff4dff;
+
+    box-shadow: 0 0 10px #ff4dff;
+}
+
+.btn-reset:hover {
+    background: #ff4dff;
+
+    color: #080b1c;
+
+    box-shadow: 0 0 25px #ff4dff;
+}
+
+/* Result panel */
+
+.hasil {
+    margin-top: 15px;
+
+    padding: 25px 10px;
+
+    text-align: center;
+
+    background: rgba(0, 255, 180, 0.06);
+
+    border: 2px dashed #00ff9d;
+
+    box-shadow: inset 0 0 20px rgba(0, 255, 157, 0.1);
+}
+
+.hasil h3 {
+    color: #00ff9d;
+
+    font-size: 15px;
+
+    text-shadow: 0 0 10px #00ff9d;
+
+    margin-bottom: 30px;
+}
+
+.rumus {
+    font-size: 18px;
+
+    color: white;
+
+    margin-bottom: 20px;
+}
+
+.hasil p {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    color: #b58cff;
+}
+
+.angka {
+    font-size: 55px;
+
+    font-weight: bold;
+
+    color: #00f7ff;
+
+    margin-top: 15px;
+
+    text-shadow:
+    0 0 10px #00f7ff,
+    0 0 30px #00f7ff;
+}
+
+/* Footer */
+
+.footer {
+    text-align: center;
+
+    margin-top: 30px;
+
+    color: #b58cff;
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+.footer span {
+    color: #00f7ff;
+}
+
+/* Mobile */
+
+@media(max-width: 480px) {
+
+    .container {
+        padding: 18px;
+    }
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .status {
+        font-size: 9px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- Awan -->
-    <div class="cloud cloud1">☁</div>
-    <div class="cloud cloud2">☁</div>
-    <div class="cloud cloud3">☁</div>
-    <div class="cloud cloud4">☁</div>
+<div class="container">
 
-    <div class="container">
+    <!-- HEADER -->
 
-        <!-- Header -->
-        <div class="header">
-            <h1>CALCULATOR</h1>
-            <p>SUPER MODULAR GAME</p>
+    <div class="header">
+
+        <h1>NEURAL CALCULATOR</h1>
+
+        <p>ADVANCED MODULAR SYSTEM</p>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div class="status">
+
+        <span class="online">● SYSTEM ONLINE</span>
+
+        <span>VERSION 2.0</span>
+
+    </div>
+
+
+    <!-- ICONS -->
+
+    <div class="icons">
+
+        <span>◈</span>
+        <span>⌬</span>
+        <span>✧</span>
+        <span>◉</span>
+
+    </div>
+
+
+    <!-- INPUT BILANGAN -->
+
+    <label for="bilangan">
+        INPUT NUMBER (a)
+    </label>
+
+    <input
+        type="number"
+        id="bilangan"
+        value="15"
+    >
+
+
+    <!-- INPUT MODULUS -->
+
+    <label for="modulus">
+        MODULUS VALUE (m)
+    </label>
+
+    <input
+        type="number"
+        id="modulus"
+        value="2"
+    >
+
+
+    <!-- BUTTON HITUNG -->
+
+    <button
+        class="btn-hitung"
+        onclick="hitung()">
+
+        ▶ EXECUTE CALCULATION
+
+    </button>
+
+
+    <!-- BUTTON RESET -->
+
+    <button
+        class="btn-reset"
+        onclick="resetGame()">
+
+        ↻ RESET SYSTEM
+
+    </button>
+
+
+    <!-- RESULT -->
+
+    <div class="hasil">
+
+        <h3>◈ CALCULATION COMPLETED ◈</h3>
+
+        <div class="rumus" id="rumus">
+
+            WAITING FOR INPUT...
+
         </div>
 
-        <!-- Icon -->
-        <div class="icons">
-            <span>🍄</span>
-            <span>🪙</span>
-            <span>⭐</span>
-            <span>🧱</span>
-        </div>
+        <p>MODULAR RESULT</p>
 
-        <!-- Input Bilangan -->
-        <label for="bilangan">BILANGAN (a)</label>
-        <input type="number" id="bilangan" value="15">
+        <div class="angka" id="angka">
 
-        <!-- Input Modulus -->
-        <label for="modulus">MODULUS (m)</label>
-        <input type="number" id="modulus" value="2">
+            ?
 
-        <!-- Tombol Hitung -->
-        <button class="btn-hitung" onclick="hitung()">
-            ▶ HITUNG HASIL
-        </button>
-
-        <!-- Tombol Reset -->
-        <button class="btn-reset" onclick="resetGame()">
-            ↻ RESET GAME
-        </button>
-
-        <!-- Kotak Hasil -->
-        <div class="hasil">
-
-            <h3>⭐ LEVEL COMPLETED ⭐</h3>
-
-            <div class="rumus" id="rumus">
-                HASIL AKAN MUNCUL DI SINI
-            </div>
-
-            <p>HASIL MODULAR:</p>
-
-            <div class="angka" id="angka">
-                ?
-            </div>
-
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>🌸 NAMA MAHASISWA 🌸</p>
-            <p>NIM MAHASISWA</p>
         </div>
 
     </div>
 
-    <!-- JavaScript -->
-    <script>
 
-        function hitung() {
+    <!-- FOOTER -->
 
-            // Mengambil nilai input
-            let a = parseInt(document.getElementById("bilangan").value);
-            let m = parseInt(document.getElementById("modulus").value);
+    <div class="footer">
 
-            // Memeriksa input
-            if (isNaN(a) || isNaN(m)) {
-                alert("Masukkan bilangan terlebih dahulu!");
-                return;
-            }
+        <p>◈ SYSTEM DEVELOPER ◈</p>
 
-            if (m <= 0) {
-                alert("Modulus harus lebih besar dari 0!");
-                return;
-            }
+        <p><span>NAMA MAHASISWA</span></p>
 
-            // Menghitung aritmatika modular
-            let hasil = ((a % m) + m) % m;
+        <p>NIM: MAHASISWA</p>
 
-            // Menampilkan hasil
-            document.getElementById("rumus").innerHTML =
-                a + " mod " + m;
+        <p>© 2026 NEURAL TECHNOLOGY</p>
 
-            document.getElementById("angka").innerHTML = hasil;
+    </div>
 
-        }
+</div>
 
-        // Fungsi Reset
-        function resetGame() {
 
-            document.getElementById("bilangan").value = 15;
+<!-- JAVASCRIPT -->
 
-            document.getElementById("modulus").value = 2;
+<script>
 
-            document.getElementById("rumus").innerHTML =
-                "HASIL AKAN MUNCUL DI SINI";
+function hitung() {
 
-            document.getElementById("angka").innerHTML = "?";
+    // Mengambil nilai input
 
-        }
+    let a = Number(
+        document.getElementById("bilangan").value
+    );
 
-    </script>
+    let m = Number(
+        document.getElementById("modulus").value
+    );
+
+
+    // Validasi input
+
+    if (
+        document.getElementById("bilangan").value === "" ||
+        document.getElementById("modulus").value === ""
+    ) {
+
+        alert("ERROR: INPUT DATA REQUIRED!");
+
+        return;
+
+    }
+
+    if (!Number.isInteger(a) || !Number.isInteger(m)) {
+
+        alert("ERROR: INPUT MUST BE AN INTEGER!");
+
+        return;
+
+    }
+
+    if (m <= 0) {
+
+        alert("ERROR: MODULUS MUST BE GREATER THAN ZERO!");
+
+        return;
+
+    }
+
+
+    // Perhitungan modular
+
+    let hasil = ((a % m) + m) % m;
+
+
+    // Menampilkan hasil
+
+    document.getElementById("rumus").innerHTML =
+        a + " MOD " + m;
+
+    document.getElementById("angka").innerHTML =
+        hasil;
+
+}
+
+
+// RESET SYSTEM
+
+function resetGame() {
+
+    document.getElementById("bilangan").value = 15;
+
+    document.getElementById("modulus").value = 2;
+
+    document.getElementById("rumus").innerHTML =
+        "WAITING FOR INPUT...";
+
+    document.getElementById("angka").innerHTML =
+        "?";
+
+}
+
+</script>
 
 </body>
 </html>

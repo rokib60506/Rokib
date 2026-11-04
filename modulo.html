@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rokib - 262505003 - Kalkulator Aritmatika Modular</title>
+<title>Rokib - 262505003 - Kalkulator Modular</title>
 
 <style>
-
-/* PENGATURAN DASAR */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,83 +15,64 @@
 
 body {
     min-height: 100vh;
-    background: radial-gradient(circle at top, #182c55, #070b19 70%);
+    padding: 30px 15px;
+    background: #080d20;
     font-family: 'Courier New', monospace;
-    color: #00f7ff;
+    color: #00eaff;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 25px 15px;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* BINTANG */
-
+/* Background bintang */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-
     background-image:
-    radial-gradient(white 1px, transparent 1px),
-    radial-gradient(#00f7ff 1px, transparent 1px);
-
-    background-size: 80px 80px, 130px 130px;
-    background-position: 0 0, 40px 50px;
-
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#00eaff 1px, transparent 1px);
+    background-size: 70px 70px, 110px 110px;
     opacity: 0.3;
     pointer-events: none;
+    z-index: 0;
 }
 
-/* KOTAK UTAMA */
-
+/* Panel utama */
 .container {
-    width: 600px;
+    position: relative;
+    z-index: 1;
+    width: 580px;
     max-width: 100%;
-
-    background: rgba(8, 18, 40, 0.96);
-
-    border: 2px solid #00eaff;
-
     padding: 25px;
-
-    box-shadow:
-    0 0 15px #00eaff,
-    0 0 40px rgba(0, 234, 255, 0.3);
+    background: #101a32;
+    border: 2px solid #00eaff;
+    box-shadow: 0 0 25px #00eaff;
 }
 
-/* HEADER */
-
+/* Header */
 .header {
     text-align: center;
     padding: 25px 10px;
-
-    background: linear-gradient(135deg, #101e42, #152d65);
-
+    background: #172b50;
     border: 2px solid #00eaff;
-
-    box-shadow: 0 0 15px #00eaff;
-
     margin-bottom: 25px;
 }
 
 .header h1 {
-    font-size: 25px;
-    letter-spacing: 2px;
-
-    color: #00f7ff;
-
-    text-shadow: 0 0 15px #00f7ff;
+    font-size: 23px;
+    text-shadow: 0 0 12px #00eaff;
 }
 
 .header p {
-    color: #b58cff;
+    color: #c084fc;
     font-size: 12px;
     margin-top: 10px;
-    letter-spacing: 2px;
 }
 
-/* STATUS */
-
+/* Status */
 .status {
     display: flex;
     justify-content: space-between;
@@ -104,105 +81,342 @@ body::before {
     margin-bottom: 25px;
 }
 
-.online {
-    animation: kedip 1s infinite;
-}
-
-@keyframes kedip {
-    50% {
-        opacity: 0.3;
-    }
-}
-
-/* IKON */
-
-.icons {
-    display: flex;
-    justify-content: space-around;
-    font-size: 27px;
-    margin-bottom: 25px;
-}
-
-/* JUDUL FITUR */
-
+/* Judul */
 .judul {
-    color: #00f7ff;
-    font-size: 16px;
+    font-size: 15px;
     margin: 25px 0 18px;
-
-    border-bottom: 1px solid #315b85;
     padding-bottom: 10px;
+    border-bottom: 1px solid #315b85;
+    color: #00eaff;
 }
 
-/* LABEL */
-
+/* Input */
 label {
     display: block;
     font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;
-
-    color: #b58cff;
-
-    margin-bottom: 10px;
+    color: #c084fc;
+    margin-bottom: 8px;
 }
-
-/* INPUT */
 
 input {
     width: 100%;
     padding: 14px;
-
-    background: #050d20;
-
-    border: 1px solid #00eaff;
-
-    color: #00ffea;
-
-    font-size: 18px;
-    font-weight: bold;
-
-    outline: none;
-
     margin-bottom: 20px;
+    background: #080d20;
+    border: 1px solid #00eaff;
+    color: white;
+    font-size: 18px;
+    outline: none;
 }
 
 input:focus {
-    box-shadow: 0 0 15px #00eaff;
+    box-shadow: 0 0 12px #00eaff;
 }
 
-/* TOMBOL */
-
+/* Tombol */
 button {
     width: 100%;
     padding: 15px;
-
     margin-bottom: 12px;
-
     font-family: inherit;
-    font-size: 13px;
     font-weight: bold;
-
-    letter-spacing: 1px;
-
     cursor: pointer;
     transition: 0.3s;
 }
 
 .btn-hitung {
     background: #00eaff;
-    color: #061020;
+    color: #080d20;
     border: 1px solid #00eaff;
-
-    box-shadow: 0 0 12px #00eaff;
-}
-
-.btn-hitung:hover {
-    background: white;
-    box-shadow: 0 0 25px #00eaff;
 }
 
 .btn-kongruen {
     background: #a855f7;
     color: white;
-    border: 1px solid #c
+    border: 1px solid #c084fc;
+}
+
+.btn-reset {
+    background: transparent;
+    color: #ff4dff;
+    border: 1px solid #ff4dff;
+}
+
+button:hover {
+    filter: brightness(1.3);
+    box-shadow: 0 0 15px currentColor;
+}
+
+/* Hasil */
+.hasil {
+    background: #0b2330;
+    border: 2px dashed #00ff9d;
+    padding: 22px 10px;
+    margin: 15px 0;
+    text-align: center;
+    min-height: 140px;
+}
+
+.hasil h3 {
+    color: #00ff9d;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.rumus {
+    color: white;
+    margin: 15px 0;
+    font-size: 17px;
+    overflow-wrap: anywhere;
+}
+
+.angka {
+    font-size: 45px;
+    font-weight: bold;
+    color: #00eaff;
+    text-shadow: 0 0 15px #00eaff;
+    margin-top: 10px;
+}
+
+.status-hasil {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.berhasil {
+    color: #00ff9d;
+}
+
+.gagal {
+    color: #ff4d6d;
+}
+
+.penjelasan {
+    color: white;
+    font-size: 12px;
+    line-height: 1.8;
+    margin-top: 15px;
+    overflow-wrap: anywhere;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #c084fc;
+    font-size: 12px;
+    line-height: 2;
+}
+
+.footer span {
+    color: #00eaff;
+}
+
+@media(max-width: 480px) {
+    .container {
+        padding: 17px;
+    }
+
+    .header h1 {
+        font-size: 19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>KALKULATOR MODULAR</h1>
+        <p>SISTEM ARITMATIKA MASA DEPAN</p>
+    </div>
+
+    <div class="status">
+        <span>● SISTEM AKTIF</span>
+        <span>VERSI 2.1</span>
+    </div>
+
+    <!-- FITUR MODULAR -->
+
+    <h3 class="judul">◈ 01. PERHITUNGAN MODULAR</h3>
+
+    <label>Bilangan (a)</label>
+    <input type="number" id="bilangan" value="15">
+
+    <label>Modulus (m)</label>
+    <input type="number" id="modulus" value="2">
+
+    <button class="btn-hitung" onclick="hitung()">
+        ▶ HITUNG HASIL MODULAR
+    </button>
+
+    <div class="hasil">
+        <h3>HASIL PERHITUNGAN</h3>
+        <div class="rumus" id="rumus">MENUNGGU INPUT...</div>
+        <p>HASIL MODULAR</p>
+        <div class="angka" id="angka">?</div>
+    </div>
+
+    <!-- FITUR KONGRUENSI -->
+
+    <h3 class="judul">◈ 02. PENGECEKAN KONGRUENSI</h3>
+
+    <label>Bilangan Pertama (a)</label>
+    <input type="number" id="bilanganA" value="15">
+
+    <label>Bilangan Kedua (b)</label>
+    <input type="number" id="bilanganB" value="7">
+
+    <label>Modulus (m)</label>
+    <input type="number" id="modulusK" value="4">
+
+    <button class="btn-kongruen" onclick="cekKongruensi()">
+        ◈ PERIKSA KONGRUENSI
+    </button>
+
+    <div class="hasil">
+        <h3>HASIL PENGECEKAN</h3>
+
+        <div class="rumus" id="rumusK">
+            MENUNGGU INPUT...
+        </div>
+
+        <div class="status-hasil" id="statusK">?</div>
+
+        <div class="penjelasan" id="penjelasanK">
+            Hasil pengecekan akan muncul di sini.
+        </div>
+    </div>
+
+    <button class="btn-reset" onclick="resetSistem()">
+        ↻ RESET SISTEM
+    </button>
+
+    <div class="footer">
+        <p>◈ PENGEMBANG SISTEM ◈</p>
+        <p><span>NAMA MAHASISWA</span></p>
+        <p>NIM: MAHASISWA</p>
+        <p>© 2026 TEKNOLOGI INFORMATIKA</p>
+    </div>
+
+</div>
+
+<script>
+
+// FUNGSI HITUNG MODULAR
+
+function hitung() {
+
+    let a = document.getElementById("bilangan").value;
+    let m = document.getElementById("modulus").value;
+
+    if (a === "" || m === "") {
+        alert("Semua input harus diisi!");
+        return;
+    }
+
+    a = Number(a);
+    m = Number(m);
+
+    if (!Number.isSafeInteger(a) ||
+        !Number.isSafeInteger(m) || m <= 0) {
+        alert("Masukkan bilangan bulat dan modulus positif!");
+        return;
+    }
+
+    let hasil = ((a % m) + m) % m;
+
+    document.getElementById("rumus").innerHTML =
+        a + " mod " + m;
+
+    document.getElementById("angka").innerHTML =
+        hasil;
+}
+
+
+// FUNGSI CEK KONGRUENSI
+
+function cekKongruensi() {
+
+    let a = document.getElementById("bilanganA").value;
+    let b = document.getElementById("bilanganB").value;
+    let m = document.getElementById("modulusK").value;
+
+    if (a === "" || b === "" || m === "") {
+        alert("Semua input harus diisi!");
+        return;
+    }
+
+    a = Number(a);
+    b = Number(b);
+    m = Number(m);
+
+    if (!Number.isSafeInteger(a) ||
+        !Number.isSafeInteger(b) ||
+        !Number.isSafeInteger(m) || m <= 0) {
+        alert("Masukkan bilangan bulat dan modulus positif!");
+        return;
+    }
+
+    let sisaA = ((a % m) + m) % m;
+    let sisaB = ((b % m) + m) % m;
+
+    let kongruen = sisaA === sisaB;
+
+    document.getElementById("rumusK").innerHTML =
+        a + " ≡ " + b + " (mod " + m + ")";
+
+    let status = document.getElementById("statusK");
+
+    if (kongruen) {
+        status.innerHTML = "✓ KONGRUEN";
+        status.className = "status-hasil berhasil";
+    } else {
+        status.innerHTML = "✕ TIDAK KONGRUEN";
+        status.className = "status-hasil gagal";
+    }
+
+    document.getElementById("penjelasanK").innerHTML =
+        a + " mod " + m + " = " + sisaA +
+        "<br>" +
+        b + " mod " + m + " = " + sisaB +
+        "<br><br>" +
+        (kongruen
+        ? "Kedua bilangan memiliki sisa yang sama."
+        : "Kedua bilangan memiliki sisa yang berbeda.");
+}
+
+
+// FUNGSI RESET
+
+function resetSistem() {
+
+    document.getElementById("bilangan").value = 15;
+    document.getElementById("modulus").value = 2;
+
+    document.getElementById("bilanganA").value = 15;
+    document.getElementById("bilanganB").value = 7;
+    document.getElementById("modulusK").value = 4;
+
+    document.getElementById("rumus").innerHTML =
+        "MENUNGGU INPUT...";
+
+    document.getElementById("angka").innerHTML = "?";
+
+    document.getElementById("rumusK").innerHTML =
+        "MENUNGGU INPUT...";
+
+    document.getElementById("statusK").innerHTML = "?";
+    document.getElementById("statusK").className = "status-hasil";
+
+    document.getElementById("penjelasanK").innerHTML =
+        "Hasil pengecekan akan muncul di sini.";
+}
+
+</script>
+
+</body>
+</html>

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rokib - 262505003 - MODULAR CALCULATOR</title>
+<title>Rokib - 262505003 - Kalkulator Aritmatika Modular</title>
 
 <style>
+
+/* PENGATURAN DASAR */
 
 * {
     box-sizing: border-box;
@@ -16,20 +19,16 @@
 
 body {
     min-height: 100vh;
-    background:
-    radial-gradient(circle at top, #182c55, #070b19 65%);
+    background: radial-gradient(circle at top, #182c55, #070b19 70%);
     font-family: 'Courier New', monospace;
     color: #00f7ff;
-
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 15px;
-
-    overflow-x: hidden;
+    padding: 25px 15px;
 }
 
-/* Background stars */
+/* BINTANG */
 
 body::before {
     content: "";
@@ -43,17 +42,17 @@ body::before {
     background-size: 80px 80px, 130px 130px;
     background-position: 0 0, 40px 50px;
 
-    opacity: 0.35;
-    z-index: -1;
+    opacity: 0.3;
+    pointer-events: none;
 }
 
-/* Main container */
+/* KOTAK UTAMA */
 
 .container {
-    width: 570px;
+    width: 600px;
     max-width: 100%;
 
-    background: rgba(8, 18, 40, 0.95);
+    background: rgba(8, 18, 40, 0.96);
 
     border: 2px solid #00eaff;
 
@@ -61,22 +60,16 @@ body::before {
 
     box-shadow:
     0 0 15px #00eaff,
-    0 0 40px rgba(0, 234, 255, 0.3),
-    inset 0 0 20px rgba(0, 234, 255, 0.1);
+    0 0 40px rgba(0, 234, 255, 0.3);
 }
 
-/* Header */
+/* HEADER */
 
 .header {
     text-align: center;
-
     padding: 25px 10px;
 
-    background: linear-gradient(
-        135deg,
-        #101e42,
-        #152d65
-    );
+    background: linear-gradient(135deg, #101e42, #152d65);
 
     border: 2px solid #00eaff;
 
@@ -86,8 +79,8 @@ body::before {
 }
 
 .header h1 {
-    font-size: 27px;
-    letter-spacing: 4px;
+    font-size: 25px;
+    letter-spacing: 2px;
 
     color: #00f7ff;
 
@@ -96,68 +89,69 @@ body::before {
 
 .header p {
     color: #b58cff;
-
     font-size: 12px;
     margin-top: 10px;
-
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
-/* Status */
+/* STATUS */
 
 .status {
     display: flex;
     justify-content: space-between;
-
     font-size: 11px;
-
     color: #00ff9d;
-
     margin-bottom: 25px;
 }
 
 .online {
-    animation: blink 1s infinite;
+    animation: kedip 1s infinite;
 }
 
-@keyframes blink {
+@keyframes kedip {
     50% {
         opacity: 0.3;
     }
 }
 
-/* Icons */
+/* IKON */
 
 .icons {
     display: flex;
     justify-content: space-around;
-
     font-size: 27px;
-
-    margin-bottom: 30px;
-
-    filter: drop-shadow(0 0 8px #00eaff);
+    margin-bottom: 25px;
 }
 
-/* Input */
+/* JUDUL FITUR */
+
+.judul {
+    color: #00f7ff;
+    font-size: 16px;
+    margin: 25px 0 18px;
+
+    border-bottom: 1px solid #315b85;
+    padding-bottom: 10px;
+}
+
+/* LABEL */
 
 label {
     display: block;
-
     font-size: 13px;
     font-weight: bold;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 10px;
+    letter-spacing: 1px;
 
     color: #b58cff;
+
+    margin-bottom: 10px;
 }
+
+/* INPUT */
 
 input {
     width: 100%;
-
-    padding: 15px;
+    padding: 14px;
 
     background: #050d20;
 
@@ -165,377 +159,50 @@ input {
 
     color: #00ffea;
 
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 
     outline: none;
 
-    margin-bottom: 25px;
-
-    box-shadow: inset 0 0 10px rgba(0, 234, 255, 0.15);
+    margin-bottom: 20px;
 }
 
 input:focus {
     box-shadow: 0 0 15px #00eaff;
 }
 
-/* Buttons */
+/* TOMBOL */
 
 button {
     width: 100%;
+    padding: 15px;
 
-    padding: 16px;
-
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 
     font-family: inherit;
-    font-size: 14px;
-
+    font-size: 13px;
     font-weight: bold;
-    letter-spacing: 2px;
+
+    letter-spacing: 1px;
 
     cursor: pointer;
-
     transition: 0.3s;
 }
 
 .btn-hitung {
     background: #00eaff;
-
     color: #061020;
-
     border: 1px solid #00eaff;
 
-    box-shadow: 0 0 15px #00eaff;
+    box-shadow: 0 0 12px #00eaff;
 }
 
 .btn-hitung:hover {
-    background: #ffffff;
-
-    box-shadow: 0 0 30px #00eaff;
-
-    transform: scale(1.02);
+    background: white;
+    box-shadow: 0 0 25px #00eaff;
 }
 
-.btn-reset {
-    background: transparent;
-
-    color: #ff4dff;
-
-    border: 1px solid #ff4dff;
-
-    box-shadow: 0 0 10px #ff4dff;
-}
-
-.btn-reset:hover {
-    background: #ff4dff;
-
-    color: #080b1c;
-
-    box-shadow: 0 0 25px #ff4dff;
-}
-
-/* Result panel */
-
-.hasil {
-    margin-top: 15px;
-
-    padding: 25px 10px;
-
-    text-align: center;
-
-    background: rgba(0, 255, 180, 0.06);
-
-    border: 2px dashed #00ff9d;
-
-    box-shadow: inset 0 0 20px rgba(0, 255, 157, 0.1);
-}
-
-.hasil h3 {
-    color: #00ff9d;
-
-    font-size: 15px;
-
-    text-shadow: 0 0 10px #00ff9d;
-
-    margin-bottom: 30px;
-}
-
-.rumus {
-    font-size: 18px;
-
+.btn-kongruen {
+    background: #a855f7;
     color: white;
-
-    margin-bottom: 20px;
-}
-
-.hasil p {
-    font-size: 12px;
-
-    letter-spacing: 2px;
-
-    color: #b58cff;
-}
-
-.angka {
-    font-size: 55px;
-
-    font-weight: bold;
-
-    color: #00f7ff;
-
-    margin-top: 15px;
-
-    text-shadow:
-    0 0 10px #00f7ff,
-    0 0 30px #00f7ff;
-}
-
-/* Footer */
-
-.footer {
-    text-align: center;
-
-    margin-top: 30px;
-
-    color: #b58cff;
-
-    font-size: 12px;
-
-    line-height: 2;
-}
-
-.footer span {
-    color: #00f7ff;
-}
-
-/* Mobile */
-
-@media(max-width: 480px) {
-
-    .container {
-        padding: 18px;
-    }
-
-    .header h1 {
-        font-size: 21px;
-    }
-
-    .status {
-        font-size: 9px;
-    }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-    <!-- HEADER -->
-
-    <div class="header">
-
-        <h1>NEURAL CALCULATOR</h1>
-
-        <p>ADVANCED MODULAR SYSTEM</p>
-
-    </div>
-
-
-    <!-- STATUS -->
-
-    <div class="status">
-
-        <span class="online">● SYSTEM ONLINE</span>
-
-        <span>VERSION 2.0</span>
-
-    </div>
-
-
-    <!-- ICONS -->
-
-    <div class="icons">
-
-        <span>◈</span>
-        <span>⌬</span>
-        <span>✧</span>
-        <span>◉</span>
-
-    </div>
-
-
-    <!-- INPUT BILANGAN -->
-
-    <label for="bilangan">
-        INPUT NUMBER (a)
-    </label>
-
-    <input
-        type="number"
-        id="bilangan"
-        value="15"
-    >
-
-
-    <!-- INPUT MODULUS -->
-
-    <label for="modulus">
-        MODULUS VALUE (m)
-    </label>
-
-    <input
-        type="number"
-        id="modulus"
-        value="2"
-    >
-
-
-    <!-- BUTTON HITUNG -->
-
-    <button
-        class="btn-hitung"
-        onclick="hitung()">
-
-        ▶ EXECUTE CALCULATION
-
-    </button>
-
-
-    <!-- BUTTON RESET -->
-
-    <button
-        class="btn-reset"
-        onclick="resetGame()">
-
-        ↻ RESET SYSTEM
-
-    </button>
-
-
-    <!-- RESULT -->
-
-    <div class="hasil">
-
-        <h3>◈ CALCULATION COMPLETED ◈</h3>
-
-        <div class="rumus" id="rumus">
-
-            WAITING FOR INPUT...
-
-        </div>
-
-        <p>MODULAR RESULT</p>
-
-        <div class="angka" id="angka">
-
-            ?
-
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        <p>◈ SYSTEM DEVELOPER ◈</p>
-
-        <p><span>NAMA MAHASISWA</span></p>
-
-        <p>NIM: MAHASISWA</p>
-
-        <p>© 2026 NEURAL TECHNOLOGY</p>
-
-    </div>
-
-</div>
-
-
-<!-- JAVASCRIPT -->
-
-<script>
-
-function hitung() {
-
-    // Mengambil nilai input
-
-    let a = Number(
-        document.getElementById("bilangan").value
-    );
-
-    let m = Number(
-        document.getElementById("modulus").value
-    );
-
-
-    // Validasi input
-
-    if (
-        document.getElementById("bilangan").value === "" ||
-        document.getElementById("modulus").value === ""
-    ) {
-
-        alert("ERROR: INPUT DATA REQUIRED!");
-
-        return;
-
-    }
-
-    if (!Number.isInteger(a) || !Number.isInteger(m)) {
-
-        alert("ERROR: INPUT MUST BE AN INTEGER!");
-
-        return;
-
-    }
-
-    if (m <= 0) {
-
-        alert("ERROR: MODULUS MUST BE GREATER THAN ZERO!");
-
-        return;
-
-    }
-
-
-    // Perhitungan modular
-
-    let hasil = ((a % m) + m) % m;
-
-
-    // Menampilkan hasil
-
-    document.getElementById("rumus").innerHTML =
-        a + " MOD " + m;
-
-    document.getElementById("angka").innerHTML =
-        hasil;
-
-}
-
-
-// RESET SYSTEM
-
-function resetGame() {
-
-    document.getElementById("bilangan").value = 15;
-
-    document.getElementById("modulus").value = 2;
-
-    document.getElementById("rumus").innerHTML =
-        "WAITING FOR INPUT...";
-
-    document.getElementById("angka").innerHTML =
-        "?";
-
-}
-
-</script>
-
-</body>
-</html>
+    border: 1px solid #c
